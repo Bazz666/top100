@@ -4,12 +4,12 @@ CREATE DATABASE peliculas;
 --2. Revisar los archivos peliculas.csv y reparto.csv para crear las tablas correspondientes,
 --determinando la relación entre ambas tablas. (2 puntos)
 CREATE TABLE Peliculas (id SERIAL, Pelicula VARCHAR(150), año_estreno  INT, Director VARCHAR(150), PRIMARY KEY(id));
-\copy peliculas FROM '/mnt/c/users/bazz/desktop/SQL/proyectos/Desafio_02/top_100/peliculas.csv' csv header; 
-
 CREATE TABLE Reparto (Peli_id INT, Nombre_Actor VARCHAR(100), FOREIGN KEY(Peli_ID) REFERENCES peliculas(id));
+
+--3. Cargar ambos archivos a su tabla correspondiente (1 punto)
+\copy peliculas FROM '/mnt/c/users/bazz/desktop/SQL/proyectos/Desafio_02/top_100/peliculas.csv' csv header;
 \copy reparto FROM '/mnt/c/users/bazz/desktop/SQL/proyectos/Desafio_02/top_100/reparto.csv' csv;
 
-3. Cargar ambos archivos a su tabla correspondiente (1 punto)
 4. Listar todos los actores que aparecen en la película "Titanic", indicando el título de la película,
 año de estreno, director y todo el reparto. (0.5 puntos)
 5. Listar los titulos de las películas donde actúe Harrison Ford.(0.5 puntos)
