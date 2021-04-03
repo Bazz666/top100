@@ -25,8 +25,17 @@ SELECT pelicula FROM peliculas INNER JOIN reparto ON peliculas.id = reparto.peli
 
 SELECT director, COUNT(*) AS TOTAL_PELICULAS FROM peliculas GROUP BY director ORDER  BY TOTAL_PELICULAS DESC LIMIT 10;
 
-7. Indicar cuantos actores distintos hay (1 puntos)
-8. Indicar las películas estrenadas entre los años 1990 y 1999 (ambos incluidos) ordenadas por
-título de manera ascendente.(1 punto)
-9. Listar el reparto de las películas lanzadas el año 2001 (1 punto)
-10. Listar los actores de la película más nueva (1 punto)
+--7. Indicar cuantos actores distintos hay (1 puntos)
+
+SELECT COUNT(DISTINCT nombre_actor) FROM reparto;  --SON 831 actores en total
+
+--8. Indicar las películas estrenadas entre los años 1990 y 1999 (ambos incluidos) ordenadas por
+--título de manera ascendente.(1 punto)
+SELECT pelicula, año_estreno FROM peliculas WHERE año_estreno >= 1990 AND año_estreno <= 1999 ORDER BY pelicula ASC;
+
+--9. Listar el reparto de las películas lanzadas el año 2001 (1 punto)
+SELECT peliculas.pelicula, peliculas.año_estreno, reparto.nombre_actor FROM peliculas INNER JOIN reparto ON peliculas.id = reparto.peli_id WHERE peliculas.año_estreno = 2001;
+
+--10. Listar los actores de la película más nueva (1 punto)
+SELECT peliculas.pelicula, peliculas.año_estreno, reparto.nombre_actor FROM peliculas INNER JOIN reparto ON peliculas.id = reparto.peli_id ORDER BY peliculas.año_estreno DESC LIMIT 1;
+--hay varias peliculas estrenadas en 2008, este codigo muestra una de ellas.
